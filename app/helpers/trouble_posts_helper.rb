@@ -1,0 +1,2 @@
+module TroublePostsHelper
+end

@@ -1,0 +1,2 @@
+class TroublePost < ApplicationRecord
+end
