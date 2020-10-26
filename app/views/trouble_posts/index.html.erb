@@ -1,0 +1,13 @@
+<p>新規投稿</p>
+<%= form_with model: @trouble_post, local: true do |f| %>
+  <p>投稿<%= f.text_field :content %></p>
+  <%= f.submit "送信" %>
+<% end %>
+
+<% @trouble_posts.each do |trouble_post| %>
+  <p>
+    <%= trouble_post.content %>
+    <%= link_to "削除", trouble_post, method: :delete, data: { confirm: "削除しますか?" } %>
+    <hr>
+  </p>
+<% end %>

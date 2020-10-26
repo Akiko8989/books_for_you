@@ -1,12 +1,19 @@
 class TroublePostsController < ApplicationController
   
-  def new
+  def index
     @trouble_post = TroublePost.new
+    @trouble_posts = TroublePost.all
   end
 
   def create
     TroublePost.create!(trouble_post_params)
-    redirect_to new_trouble_post_path
+    redirect_to trouble_posts_path
+  end
+
+  def destroy
+    trouble_post = TroublePost.find(params[:id])
+    trouble_post.destroy!
+    redirect_to trouble_posts_path
   end
 
   private
