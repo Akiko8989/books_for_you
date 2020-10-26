@@ -5,12 +5,13 @@ class TroublePostsController < ApplicationController
   end
 
   def create
-    TroublePost.create
+    TroublePost.create!(trouble_post_params)
+    redirect_to new_trouble_post_path
   end
 
-  # 以下のアクションを追加
-  # private
-  # def troubel_post_params
-  #   params.require(:troubel_posts).permit(:content)
-  # end
+  private
+  def trouble_post_params
+    params.require(:trouble_post).permit(:content)
+  end
+
 end
