@@ -6,6 +6,7 @@
 
 <% @trouble_posts.each do |trouble_post| %>
   <p>
+    <%= trouble_post.user.email %>
     <%= trouble_post.content %>
     <%= link_to "削除", trouble_post, method: :delete, data: { confirm: "削除しますか?" } %>
     <hr>

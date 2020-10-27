@@ -2,11 +2,11 @@ class TroublePostsController < ApplicationController
   
   def index
     @trouble_post = TroublePost.new
-    @trouble_posts = TroublePost.all
+    @trouble_posts = TroublePost.includes(:user)
   end
 
   def create
-    TroublePost.create!(trouble_post_params)
+    trouble_post = current_user.trouble_posts.create!(trouble_post_params)
     redirect_to trouble_posts_path
   end
 
