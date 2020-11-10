@@ -12,3 +12,4 @@ class UsersController < ApplicationController
     redirect_to users_show_path
   end
 end
+

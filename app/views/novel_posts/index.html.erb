@@ -1,0 +1,18 @@
+<p>新規投稿</p>
+<%= form_with model: @novel_post, local: true do |f| %>
+  <p>タイトル　<%= f.text_field :title, required: true %></p>
+  <p>作者　　　<%= f.text_field :author, required: true %></p>
+  <p>ジャンル　<%= f.text_field :for_genre, required: true %></p>
+  <p>感想　　　<%= f.text_field :content, required: true %></p>
+  <%= f.submit "送信" %>
+<% end %>
+
+<% @novel_posts.each do |novel_post| %>
+    <p><%= novel_post.user.username %></p>
+    <p>タイトル：<%= novel_post.title %></p>
+    <p>作者：<%= novel_post.author %></p>
+    <p>ジャンル：<%= novel_post.for_genre %></p>
+    <p><%= novel_post.content %></p>
+    <p><%= link_to "削除", novel_post, method: :delete, data: { confirm: "削除しますか?" } %></p>
+    <hr>
+<% end %>
