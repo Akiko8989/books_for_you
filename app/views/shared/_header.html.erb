@@ -1,10 +1,11 @@
 <header>
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
     <%= link_to "お悩み新規投稿・投稿一覧", root_path %>
     <%= link_to "books新規投稿・投稿一覧", novel_posts_path %>
     <%= link_to 'アカウント編集', edit_user_registration_path %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <%= "【ログイン中のアドレス】#{current_user.email}" %>
+    <%= link_to "マイページ", users_show_path %>
+    <%= "【ユーザー名】#{current_user.username}" %>
   <% else %>
     <%= link_to "お悩み投稿一覧", root_path %>
     <%= link_to "books投稿一覧", novel_posts_path %>
