@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_114125) do
+ActiveRecord::Schema.define(version: 2020_11_09_110313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "novel_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "author", null: false
+    t.string "for_genre"
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_novel_posts_on_user_id"
+  end
 
   create_table "trouble_posts", force: :cascade do |t|
     t.string "content"
@@ -31,9 +42,18 @@ ActiveRecord::Schema.define(version: 2020_10_26_114125) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username", null: false
+    t.string "favorite_genre"
+    t.string "recomended_one"
+    t.string "recomended_one_point"
+    t.string "recomended_two"
+    t.string "recomended_three"
+    t.string "recomended_four"
+    t.string "recomended_five"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "novel_posts", "users"
   add_foreign_key "trouble_posts", "users"
 end
