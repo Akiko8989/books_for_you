@@ -13,6 +13,17 @@
     <p>作者：<%= novel_post.author %></p>
     <p>ジャンル：<%= novel_post.for_genre %></p>
     <p><%= novel_post.content %></p>
-    <p><%= link_to "削除", novel_post, method: :delete, data: { confirm: "削除しますか?" } %></p>
+    <% if current_user.id == novel_post.user.id %>
+      <p><%= link_to "削除", novel_post, method: :delete, data: { confirm: "削除しますか?" } %></p>
+    <% end %>
+    <p>
+    <% if @liked_novel_post_ids.include?(novel_post.id) %>
+      <%# 「いいね！」済み（クリックすると「いいね」解除） %>
+      <%= link_to "★", novel_post_likes_path(novel_post), method: :delete %>
+    <% else %>
+      <%# 「いいね」していない（クリックすると「いいね！」にする） %>
+      <%= link_to "☆", novel_post_likes_path(novel_post), method: :post %>
+    <% end %>
+    </p>
     <hr>
 <% end %>
