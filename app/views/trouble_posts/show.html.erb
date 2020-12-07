@@ -1,0 +1,17 @@
+<p><%= @trouble_post.user.username %></p>
+<p><%= @trouble_post.content %></p>
+<p>コメント一覧</p>
+<%= form_with model: @comment, local: true do |form| %>
+  <p>タイトル<%= form.text_field :title %></p> 
+  <p>作者<%= form.text_field :author %></p>   
+  <p><%= form.text_field :content %></p>  
+  <%= form.submit 'コメントする' %>
+<% end %>
+
+<% @comments.each do |c| %>
+   <div>
+    <%= c.user.username %>
+    <%= c.content %>
+     <hr>
+  </div>
+<% end %> 
