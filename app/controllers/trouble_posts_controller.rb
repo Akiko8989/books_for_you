@@ -6,6 +6,12 @@ class TroublePostsController < ApplicationController
     @trouble_posts = TroublePost.includes(:user)
   end
 
+  def show
+    @trouble_post = TroublePost.find(params[:id])
+    @comments = Comment.order(:id).includes(:user) 
+    @comment = current_user.comments.new
+  end
+
   def create
     trouble_post = current_user.trouble_posts.create!(trouble_post_params)
     redirect_to root_path
